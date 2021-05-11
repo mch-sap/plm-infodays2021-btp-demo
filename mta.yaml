@@ -1,0 +1,41 @@
+ID: plm-search
+_schema-version: '2.1'
+version: 0.1.1
+modules:
+  - name: plm-search
+    type: approuter.nodejs
+    path: ./approuter
+    parameters:
+      disk-quota: 256M
+      memory: 128M
+      routes:
+        - route: ${space}-${org}-plmsearch.${default-domain}
+    requires:
+      - name: xsuaa_service
+      - name: destination_service
+      - name: connectivity_service
+    properties:
+      ECTR_SYSTEM: 'YourSystem'
+      ECTR_CLIENT: 'YourClient'
+      ODATA_NAME: 'YourService'
+      CPDM_URL: 'YourUrl'
+         
+resources:
+  - name: xsuaa_service
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+      config:
+        xsappname: "xsuaa-plm-search"
+    type: org.cloudfoundry.managed-service
+  - name: destination_service
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
+  - name: connectivity_service
+    parameters:
+      service-plan: lite
+      service: connectivity
+    type: org.cloudfoundry.managed-service

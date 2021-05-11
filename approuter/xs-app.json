@@ -1,0 +1,18 @@
+{
+  "welcomeFile": "/index.html",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/sap",
+      "destination": "ERP"
+	  },
+    {
+      "source": "^/(.*)$",
+      "target": "$1",
+      "localDir": "webapp/",
+      "cacheControl": "no-cache, no-store, must-revalidate"
+    }
+  ]
+} 

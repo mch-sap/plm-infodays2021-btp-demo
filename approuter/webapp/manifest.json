@@ -1,0 +1,128 @@
+{
+	"_version": "1.3.0",
+	"sap.app": {
+		"_version": "1.3.0",
+		"id": "plm-search.approuter",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/sap/opu/odata/SAP/YourService/",
+				"type": "OData"
+			}
+		}
+	},
+	"sap.ui": {
+		"_version": "1.3.0",
+		"technology": "UI5",
+		"icons": {
+			"favIcon": "image/favicon.png"
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"_version": "1.2.0",
+		"rootView": {
+			"viewName": "plm-search.approuter.view.App",
+			"type": "XML",
+			"id": "app"
+		},
+		"handleValidation": true,
+		"autoPrefixId": true,
+		"dependencies": {
+			"minUI5Version": "1.60.1",
+			"libs": {
+				"sap.f": {
+					"minVersion": ""
+				},
+				"sap.m": {},
+				"sap.ui.comp": {
+					"minVersion": ""
+				},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.ui.table": {
+					"minVersion": ""
+				},
+				"sap.ushell": {
+					"lazy": true,
+					"minVersion": ""
+				},
+				"sap.uxap": {
+					"minVersion": ""
+				}
+			}
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "plm-search.approuter.i18n.i18n"
+				}
+			},
+			"": {
+				"type": "sap.ui.model.odata.v2.ODataModel",
+				"settings": {
+					"defaultBindingMode": "TwoWay",
+					"defaultCountMode": "Inline",
+					"useBatch": false,
+					"disableHeadRequestForToken": true
+				},
+				"dataSource": "mainService"
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"resources": {
+			"css": [{
+				"uri": "css/style.css"
+			}]
+		},
+		"routing": {
+			"config": {
+				"routerClass": "sap.m.routing.Router",
+				"viewType": "XML",
+				"async": true,
+				"viewPath": "plm-search.approuter.view",
+				"controlAggregation": "pages",
+				"controlId": "app",
+				"transition": "slide",
+				"clearControlAggregation": false
+			},
+			"routes": [{
+				"name": "RouteMainView",
+				"pattern": "",
+				"target": [
+					"TargetMainView"
+				]
+			}],
+			"targets": {
+				"TargetMainView": {
+					"viewType": "XML",
+					"clearControlAggregation": false,
+					"viewId": "MainView",
+					"viewLevel": 1,
+					"viewName": "MainView"
+				}
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}
